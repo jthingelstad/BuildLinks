@@ -145,6 +145,9 @@ def main():
     file.write("\n")
 
     for site in index.keys():
+        reverse_site=site.split('.')
+        reverse_site.reverse()
+        reverse_name="/".join(reverse_site)
         file.write("- [{}](/index/{})\n".format(site, reverse_name))
 
     file.close()
