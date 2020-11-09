@@ -38,6 +38,10 @@ def make_post(p, timestamp):
     else:
         my_body = p.extended.replace('{', '&#123;').replace('}', '&#125;')
 
+    reverse_site=url_parts.netloc.split('.')
+    reverse_site.reverse()
+    reverse_name="/".join(reverse_site)
+
     # Put the data into our object
     data = {
         "title": p.description,
@@ -49,6 +53,7 @@ def make_post(p, timestamp):
         "month": timestamp.strftime('%m'),
         "day": timestamp.strftime('%d'),
         "host": url_parts.netloc,
+        "host_index": reverse_name,
         "body": my_body
     }
 
@@ -64,6 +69,7 @@ Date: {date}
 Permalink: /{year}/{month}/{day}/{hash}
 ExternalURL: {external-url}
 Host: {host}
+HostIndex: {host_index}
 
 {body}
 """.format(**data)
@@ -123,8 +129,13 @@ def main():
     print("Writing Index...")
 
     for site in index.keys():
-        fname = "Pages/Index/{}.md".format(site)
+        reverse_site=site.split('.')
+        reverse_site.reverse()
+        reverse_name="/".join(reverse_site)
+        fname = "Pages/Index/{}.md".format(reverse_name)
         print("Writing %s" % fname)
+        if not os.path.exists(os.path.dirname(fname)):
+            os.makedirs(os.path.dirname(fname))
         file = open(fname,"w") 
         file.write(make_index(site,index[site]))
         file.close() 
