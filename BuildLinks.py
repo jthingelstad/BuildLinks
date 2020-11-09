@@ -107,8 +107,8 @@ def main():
     from_zone = tz.gettz('UTC')
     to_zone = tz.gettz('America/Chicago')
 
-    pins = pb.posts.recent()['posts']
-    #pins = pb.posts.all()
+    #pins = pb.posts.recent()['posts']
+    pins = pb.posts.all()
 
     print("Writing Posts...")
 
