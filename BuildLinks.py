@@ -77,7 +77,6 @@ HostIndex: {host_index}
 
 def make_index(site, links):
     retval = "Title: Index for {}\n".format(site)
-    retval += "Permalink: /index/{}\n".format(site)
     retval += "Menu: No\n"
     retval += "\n"
 
