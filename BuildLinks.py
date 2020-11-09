@@ -151,7 +151,7 @@ def main():
     file.write("\n")
 
     for site in index.keys():
-        file.write("- [{}](/index/{})\n".format(site, site))
+        file.write("- [{}](/index/{})\n".format(site, reverse_name))
 
     file.close()
 
