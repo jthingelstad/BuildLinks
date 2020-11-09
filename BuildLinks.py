@@ -76,7 +76,13 @@ HostIndex: {host_index}
 
 
 def make_index(site, links):
+
+    reverse_site=site.split('.')
+    reverse_site.reverse()
+    reverse_name="/".join(reverse_site)    
+
     retval = "Title: Index for {}\n".format(site)
+    retval = "Permalink: /site/{}\n".format(reverse_name)
     retval += "Menu: No\n"
     retval += "\n"
 
